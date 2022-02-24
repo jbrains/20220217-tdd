@@ -15,14 +15,22 @@ public class Sale {
             display.displayEmptyBarcodeMessage();
         else if (catalog.hasMatchingPriceFor(barcode)) {
             final int price = catalog.findPrice(barcode);
-            totalCostOfItemsPurchased += price;
+            addItemToCurrentPurchase(price);
             display.displayPrice(price);
         } else
             display.displayProductNotFoundMessage(barcode);
     }
 
+    private void addItemToCurrentPurchase(int price) {
+        totalCostOfItemsPurchased += price;
+    }
+
     public void onTotal() {
         display.displayTotal(totalCostOfItemsPurchased);
+        startNewPurchase();
+    }
+
+    private void startNewPurchase() {
         totalCostOfItemsPurchased = 0;
     }
 }
