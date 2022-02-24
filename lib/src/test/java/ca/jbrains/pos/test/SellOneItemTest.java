@@ -58,7 +58,7 @@ public class SellOneItemTest {
         public void onBarcode(String barcode) {
             if ("".equals(barcode))
                 displayEmptyBarcodeMessage();
-            else if (hasPrice(barcode))
+            else if (hasMatchingPriceFor(barcode))
                 displayPrice(barcode);
             else
                 displayProductNotFoundMessage(barcode);
@@ -76,7 +76,7 @@ public class SellOneItemTest {
             display.setText(pricesByBarcode.get(barcode));
         }
 
-        private boolean hasPrice(String barcode) {
+        private boolean hasMatchingPriceFor(String barcode) {
             return pricesByBarcode.containsKey(barcode);
         }
     }
