@@ -12,7 +12,8 @@ public class SellOneItemTest {
     @Test
     void productFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50")), display);
+        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50"),
+                Map.of("12345", 795, "23456", 1250)), display);
 
         sale.onBarcode("12345");
 
