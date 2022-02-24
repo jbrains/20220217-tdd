@@ -9,7 +9,7 @@ public class SellOneItemTest {
     @Test
     void productFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
+        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50")), display);
 
         sale.onBarcode("12345");
 
@@ -19,7 +19,7 @@ public class SellOneItemTest {
     @Test
     void anotherProductFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
+        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50")), display);
 
         sale.onBarcode("23456");
 
@@ -29,7 +29,7 @@ public class SellOneItemTest {
     @Test
     void productNotFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(Map.of(), display);
+        final Sale sale = new Sale(new Catalog(Map.of()), display);
 
         sale.onBarcode("99999");
 
@@ -39,7 +39,7 @@ public class SellOneItemTest {
     @Test
     void empty() {
         final Display display = new Display();
-        final Sale sale = new Sale(Map.of(), display);
+        final Sale sale = new Sale(new Catalog(Map.of()), display);
 
         sale.onBarcode("");
 
@@ -47,41 +47,21 @@ public class SellOneItemTest {
     }
 
     public static class Sale {
-        private final Map<String, String> pricesByBarcode;
+        private final Catalog catalog;
         private final Display display;
 
-        public Sale(Map<String, String> pricesByBarcode, Display display) {
+        public Sale(Catalog catalog, Display display) {
+            this.catalog = catalog;
             this.display = display;
-            this.pricesByBarcode = pricesByBarcode;
         }
 
         public void onBarcode(String barcode) {
             if ("".equals(barcode))
-                displayEmptyBarcodeMessage();
-            else if (hasMatchingPriceFor(barcode))
-                displayPrice(findPrice(barcode));
+                display.displayEmptyBarcodeMessage();
+            else if (catalog.hasMatchingPriceFor(barcode))
+                display.displayPrice(catalog.findPrice(barcode));
             else
-                displayProductNotFoundMessage(barcode);
-        }
-
-        private void displayProductNotFoundMessage(String barcode) {
-            display.setText(String.format("Product not found: %s", barcode));
-        }
-
-        private void displayEmptyBarcodeMessage() {
-            display.setText("Scanning error: empty barcode");
-        }
-
-        private void displayPrice(String price) {
-            display.setText(price);
-        }
-
-        private String findPrice(String barcode) {
-            return pricesByBarcode.get(barcode);
-        }
-
-        private boolean hasMatchingPriceFor(String barcode) {
-            return pricesByBarcode.containsKey(barcode);
+                display.displayProductNotFoundMessage(barcode);
         }
     }
 
@@ -94,6 +74,18 @@ public class SellOneItemTest {
 
         public void setText(String text) {
             this.text = text;
+        }
+
+        public void displayProductNotFoundMessage(String barcode) {
+            setText(String.format("Product not found: %s", barcode));
+        }
+
+        private void displayEmptyBarcodeMessage() {
+            setText("Scanning error: empty barcode");
+        }
+
+        private void displayPrice(String price) {
+            setText(price);
         }
     }
 }
