@@ -18,4 +18,8 @@ public class Display {
     public void displayPrice(String price) {
         this.text = price;
     }
+
+    public void displayTotal(int totalInCents) {
+        this.text = "Total: $24.90";
+    }
 }

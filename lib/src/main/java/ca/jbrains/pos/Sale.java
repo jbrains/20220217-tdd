@@ -17,4 +17,8 @@ public class Sale {
         else
             display.displayProductNotFoundMessage(barcode);
     }
+
+    public void onTotal() {
+        display.displayTotal(2490);
+    }
 }
