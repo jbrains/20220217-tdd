@@ -20,7 +20,7 @@ public class Display {
     }
 
     public void displayTotal(int totalInCents) {
-        this.text = String.format("Total: $%.2f", amountInDollars(totalInCents));
+        this.text = String.format("Total: %s", String.format("$%.2f", amountInDollars(totalInCents)));
     }
 
     private double amountInDollars(int totalInCents) {
