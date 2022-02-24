@@ -15,7 +15,7 @@ public class Display {
         this.text = "Scanning error: empty barcode";
     }
 
-    public void displayPrice(String price) {
+    public void displayFormattedPrice(String price) {
         this.text = price;
     }
 

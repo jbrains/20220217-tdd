@@ -13,7 +13,7 @@ public class Sale {
         if ("".equals(barcode))
             display.displayEmptyBarcodeMessage();
         else if (catalog.hasMatchingPriceFor(barcode))
-            display.displayPrice(Display.formatAmount(catalog.findPrice(barcode)));
+            display.displayFormattedPrice(Display.formatAmount(catalog.findPrice(barcode)));
         else
             display.displayProductNotFoundMessage(barcode);
     }
