@@ -9,11 +9,7 @@ public final class Catalog {
         this.pricesInCentsByBarcode = pricesInCentsByBarcode;
     }
 
-    public String findFormattedPrice(String barcode) {
-        return Display.formatAmount(findPrice(barcode));
-    }
-
-    private int findPrice(String barcode) {
+    public int findPrice(String barcode) {
         return pricesInCentsByBarcode.get(barcode);
     }
 
