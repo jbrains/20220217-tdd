@@ -1,4 +1,4 @@
-package ca.jbrains.pos.test;
+package ca.jbrains.pos;
 
 import java.util.Map;
 
@@ -9,11 +9,11 @@ public final class Catalog {
         this.pricesByBarcode = pricesByBarcode;
     }
 
-    String findPrice(String barcode) {
+    public String findPrice(String barcode) {
         return pricesByBarcode.get(barcode);
     }
 
-    boolean hasMatchingPriceFor(String barcode) {
+    public boolean hasMatchingPriceFor(String barcode) {
         return pricesByBarcode.containsKey(barcode);
     }
 }
