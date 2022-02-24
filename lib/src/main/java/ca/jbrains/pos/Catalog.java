@@ -10,7 +10,11 @@ public final class Catalog {
     }
 
     public String findFormattedPrice(String barcode) {
-        return Display.formatAmount(pricesInCentsByBarcode.get(barcode));
+        return Display.formatAmount(findPrice(barcode));
+    }
+
+    private int findPrice(String barcode) {
+        return pricesInCentsByBarcode.get(barcode);
     }
 
     public boolean hasMatchingPriceFor(String barcode) {
