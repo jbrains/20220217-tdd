@@ -20,6 +20,6 @@ public class Display {
     }
 
     public void displayTotal(int totalInCents) {
-        this.text = String.format("Total: $%.2f", 24.9d);
+        this.text = String.format("Total: $%.2f", 2490 / 100.0d);
     }
 }
