@@ -9,7 +9,7 @@ public class SellOneItemTest {
     @Test
     void productFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
 
         sale.onBarcode("12345");
 
@@ -19,7 +19,7 @@ public class SellOneItemTest {
     @Test
     void anotherProductFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
 
         sale.onBarcode("23456");
 
@@ -29,7 +29,7 @@ public class SellOneItemTest {
     @Test
     void productNotFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
 
         sale.onBarcode("99999");
 
@@ -39,7 +39,7 @@ public class SellOneItemTest {
     @Test
     void empty() {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(Map.of("12345", "$7.95", "23456", "$12.50"), display);
 
         sale.onBarcode("");
 
@@ -47,15 +47,15 @@ public class SellOneItemTest {
     }
 
     public static class Sale {
-        private Display display;
+        private final Map<String, String> pricesByBarcode;
+        private final Display display;
 
-        public Sale(Display display) {
+        public Sale(Map<String, String> pricesByBarcode, Display display) {
             this.display = display;
+            this.pricesByBarcode = pricesByBarcode;
         }
 
         public void onBarcode(String barcode) {
-            final Map<String, String> pricesByBarcode = Map.of("12345", "$7.95", "23456", "$12.50");
-
             if ("".equals(barcode))
                 display.setText("Scanning error: empty barcode");
             else if (pricesByBarcode.containsKey(barcode))
