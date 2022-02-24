@@ -20,6 +20,6 @@ public class Display {
     }
 
     public void displayTotal(int totalInCents) {
-        this.text = "Total: $24.90";
+        this.text = String.format("Total: $%.2f", 24.9d);
     }
 }
