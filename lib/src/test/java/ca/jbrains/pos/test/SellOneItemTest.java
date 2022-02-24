@@ -12,7 +12,7 @@ public class SellOneItemTest {
     @Test
     void productFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50"),
+        final Sale sale = new Sale(new Catalog(null,
                 Map.of("12345", 795, "23456", 1250)), display);
 
         sale.onBarcode("12345");
@@ -23,7 +23,7 @@ public class SellOneItemTest {
     @Test
     void anotherProductFound() {
         final Display display = new Display();
-        final Sale sale = new Sale(new Catalog(Map.of("12345", "$7.95", "23456", "$12.50"),
+        final Sale sale = new Sale(new Catalog(null,
                 Map.of("12345", 795, "23456", 1250)), display);
 
         sale.onBarcode("23456");
