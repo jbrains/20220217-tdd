@@ -12,7 +12,7 @@ public class SellMultipleItemsTest {
     @Test
     void happyPath() {
         final Display display = new Display();
-        final Sale sale = new Sale(new Catalog(null, Map.of(
+        final Sale sale = new Sale(new Catalog(Map.of(
                 "12345", 795,
                 "23456", 895,
                 "34567", 800
