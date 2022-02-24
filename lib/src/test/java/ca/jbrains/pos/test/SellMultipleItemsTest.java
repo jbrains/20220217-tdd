@@ -16,6 +16,10 @@ public class SellMultipleItemsTest {
                 "12345", "$7.95",
                 "23456", "$8.95",
                 "34567", "$8.00"
+        ), Map.of(
+                "12345", 795,
+                "23456", 895,
+                "34567", 800
         )), display);
 
         sale.onBarcode("12345");
