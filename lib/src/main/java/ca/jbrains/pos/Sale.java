@@ -23,5 +23,6 @@ public class Sale {
 
     public void onTotal() {
         display.displayTotal(totalCostOfItemsPurchased);
+        totalCostOfItemsPurchased = 0;
     }
 }
