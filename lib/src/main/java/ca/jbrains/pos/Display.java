@@ -23,11 +23,11 @@ public class Display {
         this.text = String.format("Total: %s", formatAmount(totalInCents));
     }
 
-    public String formatAmount(int totalInCents) {
+    public static String formatAmount(int totalInCents) {
         return String.format("$%.2f", amountInDollars(totalInCents));
     }
 
-    private double amountInDollars(int totalInCents) {
+    private static double amountInDollars(int totalInCents) {
         return totalInCents / 100.0d;
     }
 }
