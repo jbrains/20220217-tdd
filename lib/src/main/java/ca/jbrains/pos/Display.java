@@ -30,4 +30,8 @@ public class Display {
     private static double amountInDollars(int totalInCents) {
         return totalInCents / 100.0d;
     }
+
+    public void displayPrice(int priceInCents) {
+        displayFormattedPrice(formatAmount(priceInCents));
+    }
 }

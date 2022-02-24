@@ -13,13 +13,9 @@ public class Sale {
         if ("".equals(barcode))
             display.displayEmptyBarcodeMessage();
         else if (catalog.hasMatchingPriceFor(barcode))
-            displayPrice(catalog.findPrice(barcode));
+            display.displayPrice(catalog.findPrice(barcode));
         else
             display.displayProductNotFoundMessage(barcode);
-    }
-
-    private void displayPrice(int priceInCents) {
-        display.displayFormattedPrice(Display.formatAmount(priceInCents));
     }
 
     public void onTotal() {
