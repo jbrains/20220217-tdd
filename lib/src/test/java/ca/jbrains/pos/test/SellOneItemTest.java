@@ -59,7 +59,7 @@ public class SellOneItemTest {
             if ("".equals(barcode))
                 displayEmptyBarcodeMessage();
             else if (hasMatchingPriceFor(barcode))
-                displayPrice(barcode);
+                displayPrice(findPrice(barcode));
             else
                 displayProductNotFoundMessage(barcode);
         }
@@ -72,8 +72,12 @@ public class SellOneItemTest {
             display.setText("Scanning error: empty barcode");
         }
 
-        private void displayPrice(String barcode) {
-            display.setText(pricesByBarcode.get(barcode));
+        private void displayPrice(String price) {
+            display.setText(price);
+        }
+
+        private String findPrice(String barcode) {
+            return pricesByBarcode.get(barcode);
         }
 
         private boolean hasMatchingPriceFor(String barcode) {
