@@ -16,9 +16,6 @@ public final class Catalog {
     }
 
     public boolean hasMatchingPriceFor(String barcode) {
-        if (pricesInCentsByBarcode == null)
-            return pricesByBarcode.containsKey(barcode);
-        else
-            return pricesInCentsByBarcode.containsKey(barcode);
+        return pricesInCentsByBarcode.containsKey(barcode);
     }
 }
