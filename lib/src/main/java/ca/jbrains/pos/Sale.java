@@ -3,7 +3,7 @@ package ca.jbrains.pos;
 public class Sale {
     private final Catalog catalog;
     private final Display display;
-    private Purchase purchase = new Purchase();
+    private Purchase currentPurchase = new Purchase();
 
     public Sale(Catalog catalog, Display display) {
         this.catalog = catalog;
@@ -15,14 +15,14 @@ public class Sale {
             display.displayEmptyBarcodeMessage();
         else if (catalog.hasMatchingPriceFor(barcode)) {
             final int price = catalog.findPrice(barcode);
-            purchase.addItemToCurrentPurchase(price);
+            currentPurchase.addItemToCurrentPurchase(price);
             display.displayPrice(price);
         } else
             display.displayProductNotFoundMessage(barcode);
     }
 
     public void onTotal() {
-        display.displayTotal(purchase.totalCostOfItemsPurchased);
-        purchase = new Purchase();
+        display.displayTotal(currentPurchase.totalCostOfItemsPurchased);
+        currentPurchase = new Purchase();
     }
 }
