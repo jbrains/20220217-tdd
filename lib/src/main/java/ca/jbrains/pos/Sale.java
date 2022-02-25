@@ -3,7 +3,7 @@ package ca.jbrains.pos;
 public class Sale {
     private final Catalog catalog;
     private final Display display;
-    private final Purchase purchase = new Purchase();
+    private Purchase purchase = new Purchase();
 
     public Sale(Catalog catalog, Display display) {
         this.catalog = catalog;
@@ -23,6 +23,6 @@ public class Sale {
 
     public void onTotal() {
         display.displayTotal(purchase.totalCostOfItemsPurchased);
-        purchase.startNewPurchase();
+        purchase = new Purchase();
     }
 }

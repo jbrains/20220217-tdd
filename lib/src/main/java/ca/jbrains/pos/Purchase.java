@@ -6,8 +6,4 @@ public class Purchase {
     void addItemToCurrentPurchase(int price) {
         totalCostOfItemsPurchased += price;
     }
-
-    void startNewPurchase() {
-        totalCostOfItemsPurchased = 0;
-    }
 }
