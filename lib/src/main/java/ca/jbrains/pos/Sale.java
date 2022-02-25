@@ -11,14 +11,13 @@ public class Sale {
     }
 
     public void onBarcode(String barcode) {
-        if ("".equals(barcode))
-            display.displayEmptyBarcodeMessage();
-        else if (catalog.hasMatchingPriceFor(barcode)) {
+        if ("".equals(barcode)) display.displayEmptyBarcodeMessage();
+        else if (!catalog.hasMatchingPriceFor(barcode)) display.displayProductNotFoundMessage(barcode);
+        else {
             final int price = catalog.findPrice(barcode);
             currentPurchase.addItemToCurrentPurchase(price);
             display.displayPrice(price);
-        } else
-            display.displayProductNotFoundMessage(barcode);
+        }
     }
 
     public void onTotal() {
