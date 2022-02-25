@@ -22,7 +22,7 @@ public class Sale {
     }
 
     public void onTotal() {
-        display.displayTotal(currentPurchase.totalCostOfItemsPurchased);
+        display.displayTotal(currentPurchase.getTotalCost());
         currentPurchase = new Purchase();
     }
 }
